@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>top.donl.health</groupId>
+        <artifactId>mental-health</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>mvc-configurer</artifactId>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>top.donl.health</groupId>
+            <artifactId>common</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>top.donl.swagger</groupId>
+            <artifactId>donl-rachel-swagger</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>top.donl.bean</groupId>
+            <artifactId>donl-rachel-bean-util</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>top.donl.bean</groupId>
+            <artifactId>donl-rachel-bean-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>top.donl.mybatisplus</groupId>
+            <artifactId>donl-rachel-mybatisplus</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

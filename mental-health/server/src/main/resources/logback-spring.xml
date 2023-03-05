@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <contextName>logback-formatter</contextName>
+    <property name="pattern" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] [%-5level] %logger{50} - %msg %n"/>
+    <property name="pattern-color" value="[%yellow(%d{yyyy-MM-dd HH:mm:ss.SSS})] [%thread] [%highlight(%-5level)] %green(%logger{50}) - %highlight(%msg) %n"/>
+    <property name="LOG_INFO" value="logs/info"/>
+    <property name="LOG_ERROR" value="logs/error"/>
+
+    <!-- 控制台输出 -->
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern-color}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 文件输出 -->
+    <appender name="FileInfo" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_INFO}/info.%d.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FileError" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_ERROR}/error.%d.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+
+    <root level="INFO">
+        <appender-ref ref="Console"/>
+        <appender-ref ref="FileInfo"/>
+        <appender-ref ref="FileError" />
+    </root>
+
+    <logger name="com.example.logbackdemo.IndexAction" level="info" additivity="false">
+        <appender-ref ref="Console"/>
+    </logger>
+
+</configuration>

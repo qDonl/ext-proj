@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>top.donl.health</groupId>
+    <artifactId>mental-health</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>server</module>
+        <module>service</module>
+        <module>mvc-configurer</module>
+        <module>common</module>
+        <module>repository</module>
+        <module>endpoint</module>
+    </modules>
+
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <revision>1.0-SNAPSHOT</revision>
+
+
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <donl-rachel-parent.version>1.0.0-RELEASE</donl-rachel-parent.version>
+        <donl-rachel-bean.version>1.0.1-SNAPSHOT</donl-rachel-bean.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>top.donl.parent</groupId>
+                <artifactId>donl-rachel-parent</artifactId>
+                <version>${donl-rachel-parent.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
+            <dependency>
+                <groupId>top.donl.bean</groupId>
+                <artifactId>donl-rachel-bean</artifactId>
+                <version>${donl-rachel-bean.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

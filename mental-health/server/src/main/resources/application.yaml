@@ -1,0 +1,32 @@
+server:
+  port: 8866
+
+spring:
+  application:
+    name: donl-parent-frame-parent
+  main:
+    banner-mode: off
+  datasource:
+    druid:
+      url: jdbc:mysql://146.56.170.243:3396/tuling_5_sql
+      username: root
+      password: qwer123)(*POI
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  global-config:
+    banner: false
+    db-config:
+      logic-delete-field: is_deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath:/mapper/**/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+donl:
+  rachel:
+    swagger:
+      enable: true
+      api-select-package: top.donl.health.endpoint
