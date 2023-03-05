@@ -13,8 +13,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(basePackages = {
-    "top.donl.swagger",
-    "top.donl.bean.config"
+        "top.donl.swagger",
+        "top.donl.bean.config",
+        "top.donl.mybatisplus"
 })
 public class BaseConfig {
 }
