@@ -10,6 +10,7 @@ import top.donl.health.model.po.User;
 import top.donl.health.model.vo.UserVO;
 import top.donl.health.service.UserService;
 import top.donl.util.common.domain.info.UserInfo;
+import top.donl.util.exceptioins.RestResponseExceptionEnum;
 import top.donl.util.holder.UserCtxHolder;
 
 @Service
@@ -30,6 +31,7 @@ public class UserServiceImpl
     @Override
     public UserVO detail() {
         UserInfo userInfo = UserCtxHolder.getUserInfo();
+        RestResponseExceptionEnum.NOT_FOUND_ELEMENT.assertIsTrue(userInfo != null, "该用户不存在");
         return baseMapper.findById(userInfo.getUserId());
     }
 }

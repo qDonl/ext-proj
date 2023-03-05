@@ -8,13 +8,7 @@ import top.donl.health.model.bean.user.LoginBean;
 import top.donl.health.model.bean.user.RegisterBean;
 import top.donl.health.model.vo.UserVO;
 import top.donl.health.service.UserService;
-import top.donl.util.exceptioins.RestResponseException;
 import top.donl.util.response.BaseResponse;
-
-/**
- * @author Crux
- * @since 2023-03-05 18:09:41
- */
 
 @Api(tags = "用户模块")
 @RestController
