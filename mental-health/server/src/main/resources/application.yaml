@@ -9,8 +9,8 @@ spring:
   datasource:
     druid:
       url: jdbc:mysql://146.56.170.243:3396/school
-      username: root
-      password: qwer123)(*POI
+      username: school
+      password: school
       driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis-plus:
