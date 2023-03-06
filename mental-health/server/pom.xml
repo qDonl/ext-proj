@@ -25,14 +25,23 @@
         </dependency>
     </dependencies>
 
-
     <build>
+        <finalName>mental-health</finalName>
         <plugins>
-
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.0.3</version>
+                <version>2.7.9</version>
+                <configuration>
+                    <mainClass>top.donl.health.MentalHealthApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>

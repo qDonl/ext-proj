@@ -1,0 +1,13 @@
+version: "3.3"
+
+services:
+  mental-health:
+    image: qdonl/mental-health:${TAG_VERSION}
+    platform: linux/arm64
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - 9015:8866

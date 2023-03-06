@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  mental-health:
+    image: qdonl/mental-health:${TAG_VERSION}
+    env_file:
+      - .env
+    ports:
+      - 9015:8866
