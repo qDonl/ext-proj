@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import top.donl.health.anno.ConfirmPwd;
+import top.donl.health.common.validation.InsertGroup;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -16,6 +18,7 @@ import javax.validation.constraints.Size;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ConfirmPwd(groups = {InsertGroup.class})
 public class RegisterBean {
 
     @Pattern(regexp = "[1][3,4,5,7,8][0-9]{9}$", message = "手机号格式错误")

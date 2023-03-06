@@ -22,4 +22,6 @@ public interface UserMapper extends BaseMapper<User> {
     int insertOrUpdateSelective(User record);
 
     UserVO findById(@Param("userId") Long userId);
+
+    User findByPhone(@Param("phone") String phone);
 }

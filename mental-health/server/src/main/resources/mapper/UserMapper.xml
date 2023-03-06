@@ -317,4 +317,10 @@
     from user
     where id = #{userId}
     </select>
+
+  <select id="findByPhone" resultMap="BaseResultMap">
+    select `id`, `phone`, `password`, `real_name`, `role`
+    from `user`
+    where phone = #{phone} and is_deleted = 0
+    </select>
 </mapper>

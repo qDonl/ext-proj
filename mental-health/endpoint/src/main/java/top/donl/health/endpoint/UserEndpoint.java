@@ -21,7 +21,7 @@ public class UserEndpoint {
     @ApiOperation(value = "用户登录")
     @PostMapping(value = "/login")
     public BaseResponse<String> login(@RequestBody LoginBean bean) {
-        return BaseResponse.success();
+        return BaseResponse.success(userService.login(bean));
     }
 
     @ApiOperation(value = "用户注册")
