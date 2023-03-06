@@ -20,9 +20,8 @@ public class MentalHealthMvcConfigurer extends WebMvcConfiguration {
         super.addInterceptors(registry);
 
         registry.addInterceptor(authInterceptor())
-                .excludePathPatterns(
-                        "/swagger-resources", "/v3/api-docs", "/static/**",
-                        "/doc.html", "/webjars/**", "/pass/**", "/register", "/login")
-                .addPathPatterns("/**");
+            .addPathPatterns(
+                "/user/**", "/sys-anno/**", "/evaluation/**", "/consult-reply/**",
+                "/msg-board/**", "/mental-resource/**", "/case/**", "/consult/**");
     }
 }
