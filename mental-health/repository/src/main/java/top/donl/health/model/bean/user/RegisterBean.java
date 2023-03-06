@@ -7,13 +7,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-/**
- * @author Crux
- * @since 2023-03-05 18:11:04
- */
 
 @ApiModel(value = "用户注册")
 @Data
@@ -25,6 +22,10 @@ public class RegisterBean {
     @NotBlank(message = "手机号不能为空")
     @ApiModelProperty(value = "手机号", required = true)
     private String phone;
+
+    @NotNull(message = "请选择注册角色")
+    @ApiModelProperty(value = "用户角色(0:学生;1:教师;3:管理员)", required = true)
+    private Integer role;
 
     @Size(min = 1, max = 10, message = "真实姓名1-10字符")
     @NotBlank(message = "真实姓名不能为空")

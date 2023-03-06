@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import top.donl.health.model.po.User;
-import top.donl.health.model.vo.UserVO;
+import top.donl.health.model.vo.user.UserVO;
 
 import java.util.List;
 

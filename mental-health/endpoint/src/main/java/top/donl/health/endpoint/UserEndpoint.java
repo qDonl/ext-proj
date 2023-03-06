@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import top.donl.health.model.bean.user.LoginBean;
 import top.donl.health.model.bean.user.RegisterBean;
-import top.donl.health.model.vo.UserVO;
+import top.donl.health.model.vo.user.UserVO;
 import top.donl.health.service.UserService;
 import top.donl.util.response.BaseResponse;
 

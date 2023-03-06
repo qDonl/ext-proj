@@ -312,7 +312,7 @@
     </trim>
   </insert>
 
-  <select id="findById" resultType="top.donl.health.model.vo.UserVO">
+  <select id="findById" resultType="top.donl.health.model.vo.user.UserVO">
     select id, real_name, role
     from user
     where id = #{userId}

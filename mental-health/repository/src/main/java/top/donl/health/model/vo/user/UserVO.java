@@ -1,4 +1,4 @@
-package top.donl.health.model.vo;
+package top.donl.health.model.vo.user;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

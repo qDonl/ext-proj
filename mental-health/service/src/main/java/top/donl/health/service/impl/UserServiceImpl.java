@@ -7,7 +7,7 @@ import top.donl.health.converter.UserConverter;
 import top.donl.health.mapper.UserMapper;
 import top.donl.health.model.bean.user.RegisterBean;
 import top.donl.health.model.po.User;
-import top.donl.health.model.vo.UserVO;
+import top.donl.health.model.vo.user.UserVO;
 import top.donl.health.service.UserService;
 import top.donl.util.common.domain.info.UserInfo;
 import top.donl.util.exceptioins.RestResponseExceptionEnum;
