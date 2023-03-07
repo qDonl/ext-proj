@@ -284,4 +284,24 @@
       </if>
     </trim>
   </insert>
+
+  <select id="findCountByQuery" resultType="long">
+    select count(*)
+    from mental_evaluation
+    where is_deleted = 0
+    <if test="query.keyword != null and query.keyword != ''">
+      and title like concat('%', #{query.keyword}, '%')
+    </if>
+  </select>
+
+  <select id="findByQuery" resultType="top.donl.health.model.vo.evaluation.MentalEvaluationVO">
+    select id, url, title, create_time, update_time, publisher
+    from mental_evaluation
+    where is_deleted = 0
+    <if test="query.keyword != null and query.keyword != ''">
+      and title like concat('%', #{query.keyword}, '%')
+    </if>
+    limit #{query.pageSize,jdbcType=INTEGER}
+    offset #{query.pageSkip}
+  </select>
 </mapper>

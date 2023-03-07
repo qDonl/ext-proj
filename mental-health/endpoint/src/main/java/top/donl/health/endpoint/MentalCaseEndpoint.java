@@ -11,7 +11,7 @@ import top.donl.health.model.bean.cases.MentalCaseBean;
 import top.donl.health.model.query.cases.MentalCaseQuery;
 import top.donl.health.model.vo.cases.MentalCaseVO;
 import top.donl.health.service.MentalCaseService;
-import top.donl.mybatisplus.util.PageResult;
+import top.donl.util.common.domain.page.PageResult;
 import top.donl.util.response.BaseResponse;
 
 
@@ -26,19 +26,19 @@ public class MentalCaseEndpoint {
     @ApiOperation(value = "新增案例")
     @PostMapping(value = "/add")
     public BaseResponse<MentalCaseVO> add(@Validated(value = InsertGroup.class) @RequestBody MentalCaseBean bean) {
-        return BaseResponse.success();
+        return BaseResponse.success(mentalCaseService.add(bean));
     }
 
     @ApiOperation(value = "更新案例")
     @PutMapping(value = "/update")
     public BaseResponse<MentalCaseVO> update(@Validated(value = UpdateGroup.class) @RequestBody MentalCaseBean bean) {
-        return BaseResponse.success();
+        return BaseResponse.success(mentalCaseService.update(bean));
     }
 
     @ApiOperation(value = "案例列表")
     @GetMapping(value = "/list")
     public BaseResponse<PageResult<MentalCaseVO>> list(MentalCaseQuery query) {
-        return BaseResponse.success();
+        return BaseResponse.success(mentalCaseService.list(query));
     }
 
 }

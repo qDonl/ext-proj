@@ -219,7 +219,7 @@
       <if test="updateBy != null">
         update_by,
       </if>
-      <if test="isDeleted != null">
+      <if test="deleted != null">
         is_deleted,
       </if>
     </trim>
@@ -249,7 +249,7 @@
       <if test="updateBy != null">
         #{updateBy,jdbcType=BIGINT},
       </if>
-      <if test="isDeleted != null">
+      <if test="deleted != null">
         #{isDeleted,jdbcType=BOOLEAN},
       </if>
     </trim>
@@ -279,9 +279,33 @@
       <if test="updateBy != null">
         update_by = #{updateBy,jdbcType=BIGINT},
       </if>
-      <if test="isDeleted != null">
+      <if test="deleted != null">
         is_deleted = #{isDeleted,jdbcType=BOOLEAN},
       </if>
     </trim>
   </insert>
+
+  <sql id="ConsultQueryWhereClause">
+    where is_deleted = 0
+    <if test="query.keyword">
+      and (title like concat('%', #{query.keyword}, '%') or `desc` like concat('%', #{query.keyword}, '%'))
+    </if>
+    <if test="query.userId != null">
+      and create_by = #{query.userId}
+    </if>
+  </sql>
+
+  <select id="findByQuery" resultType="top.donl.health.model.vo.consult.ConsultVO">
+      select id, title, `desc`, `create_time`, `update_time`
+      from consult
+      <include refid="ConsultQueryWhereClause"/>
+      order by create_time desc
+      limit ${query.pageSize} offset ${query.pageSkip}
+  </select>
+
+  <select id="findCountByQuery" resultType="java.lang.Long">
+    select count(*)
+    from consult
+    <include refid="ConsultQueryWhereClause" />
+  </select>
 </mapper>

@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import top.donl.health.common.validation.InsertGroup;
 import top.donl.health.common.validation.UpdateGroup;
 import top.donl.health.model.bean.evaluation.MentalEvaluationBean;
+import top.donl.health.model.query.evaluation.MentalEvaluationQuery;
 import top.donl.health.model.vo.evaluation.MentalEvaluationVO;
 import top.donl.health.service.MentalEvaluationService;
-import top.donl.mybatisplus.util.PageResult;
-import top.donl.util.common.domain.query.BaseQuery;
+import top.donl.util.common.domain.page.PageResult;
 import top.donl.util.response.BaseResponse;
 
 
@@ -26,18 +26,18 @@ public class MentalEvaluationEndpoint {
     @ApiOperation(value = "新增咨询评估")
     @PostMapping("/add")
     public BaseResponse<MentalEvaluationVO> add(@Validated(value = {InsertGroup.class}) @RequestBody MentalEvaluationBean bean) {
-        return BaseResponse.success();
+        return BaseResponse.success(mentalEvaluationService.add(bean));
     }
 
     @ApiOperation(value = "更新咨询评估")
     @PutMapping("/update")
     public BaseResponse<MentalEvaluationVO> update(@Validated(value = {UpdateGroup.class}) @RequestBody MentalEvaluationBean bean) {
-        return BaseResponse.success();
+        return BaseResponse.success(mentalEvaluationService.update(bean));
     }
 
     @ApiOperation(value = "咨询评估列表")
     @GetMapping("/list")
-    public BaseResponse<PageResult<MentalEvaluationVO>> list(BaseQuery query) {
-        return BaseResponse.success();
+    public BaseResponse<PageResult<MentalEvaluationVO>> list(MentalEvaluationQuery query) {
+        return BaseResponse.success(mentalEvaluationService.list(query));
     }
 }

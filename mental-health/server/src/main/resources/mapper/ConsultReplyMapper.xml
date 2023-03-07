@@ -175,7 +175,7 @@
       #{createBy,jdbcType=BIGINT},
       #{updateTime,jdbcType=TIMESTAMP},
       #{updateBy,jdbcType=BIGINT},
-      #{isDeleted,jdbcType=BOOLEAN},
+      #{deleted,jdbcType=BOOLEAN},
     </trim>
     on duplicate key update 
     <trim suffixOverrides=",">
@@ -189,7 +189,7 @@
       create_by = #{createBy,jdbcType=BIGINT},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       update_by = #{updateBy,jdbcType=BIGINT},
-      is_deleted = #{isDeleted,jdbcType=BOOLEAN},
+      is_deleted = #{deleted,jdbcType=BOOLEAN},
     </trim>
   </insert>
   <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="top.donl.health.model.po.ConsultReply" useGeneratedKeys="true">
@@ -220,7 +220,7 @@
       <if test="updateBy != null">
         update_by,
       </if>
-      <if test="isDeleted != null">
+      <if test="deleted != null">
         is_deleted,
       </if>
     </trim>
@@ -280,9 +280,24 @@
       <if test="updateBy != null">
         update_by = #{updateBy,jdbcType=BIGINT},
       </if>
-      <if test="isDeleted != null">
+      <if test="deleted != null">
         is_deleted = #{isDeleted,jdbcType=BOOLEAN},
       </if>
     </trim>
   </insert>
+
+  <select id="findCountByQuery" resultType="long">
+    select count(*)
+    from consult_reply
+    where is_deleted = 0 and consult_id = #{query.consultId}
+    </select>
+
+  <select id="findByQuery" resultType="top.donl.health.model.vo.consultReply.ConsultReplyVO">
+    select id, reply_content, replier, create_time, update_time
+      from consult_reply
+    where is_deleted = 0 and consult_id = #{query.consultId}
+    order by create_time desc
+    limit #{query.pageSize}
+    offset #{query.pageSkip}
+  </select>
 </mapper>
