@@ -26,19 +26,19 @@ public class MsgBoardEndpoint {
     @ApiOperation(value = "新增公告")
     @PostMapping("/add")
     public BaseResponse<MsgBoardVO> add(@Validated(value = {InsertGroup.class}) @RequestBody MsgBoardBean bean) {
-        return BaseResponse.success();
+        return BaseResponse.success(msgBoardService.addMsg(bean));
     }
 
     @ApiOperation(value = "更新公告")
     @PutMapping("/update")
     public BaseResponse<MsgBoardVO> update(@Validated(value = {UpdateGroup.class}) @RequestBody MsgBoardBean bean) {
-        return BaseResponse.success();
+        return BaseResponse.success(msgBoardService.updateMsg(bean));
     }
 
     @ApiOperation(value = "公告列表")
     @GetMapping("/list")
     public BaseResponse<PageResult<MsgBoardVO>> list(@RequestParam BaseQuery query) {
-        return BaseResponse.success();
+        return BaseResponse.success(msgBoardService.listMsgBoard(query));
     }
 
 }

@@ -11,7 +11,7 @@
     <result column="create_by" jdbcType="BIGINT" property="createBy" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="update_by" jdbcType="BIGINT" property="updateBy" />
-    <result column="is_deleted" jdbcType="BOOLEAN" property="isDeleted" />
+    <result column="is_deleted" jdbcType="BOOLEAN" property="deleted" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -226,8 +226,8 @@
       <if test="updateBy != null">
         #{updateBy,jdbcType=BIGINT},
       </if>
-      <if test="isDeleted != null">
-        #{isDeleted,jdbcType=BOOLEAN},
+      <if test="deleted != null">
+        #{deleted,jdbcType=BOOLEAN},
       </if>
     </trim>
     on duplicate key update 
@@ -253,9 +253,23 @@
       <if test="updateBy != null">
         update_by = #{updateBy,jdbcType=BIGINT},
       </if>
-      <if test="isDeleted != null">
-        is_deleted = #{isDeleted,jdbcType=BOOLEAN},
+      <if test="deleted != null">
+        is_deleted = #{deleted,jdbcType=BOOLEAN},
       </if>
     </trim>
   </insert>
+
+  <select id="findTotalCount" resultType="long">
+    select count(*)
+    from sys_anno
+    where is_deleted = 0
+    </select>
+
+  <select id="findAnnoList" resultType="top.donl.health.model.vo.anno.AnnoVO">
+    select <include refid="Base_Column_List" />
+    from sys_anno
+    where is_deleted = 0
+    limit #{query.pageSize}
+    offset #{query.pageSkip}
+  </select>
 </mapper>

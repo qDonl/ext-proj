@@ -26,18 +26,18 @@ public class SysAnnoEndpoint {
     @ApiOperation(value = "新增公告")
     @PostMapping("/add")
     public BaseResponse<AnnoVO> add(@Validated(value = InsertGroup.class) @RequestBody AnnoBean bean) {
-        return BaseResponse.success();
+        return BaseResponse.success(sysAnnoService.addAnno(bean));
     }
 
     @ApiOperation(value = "新增公告")
     @PutMapping("/add")
     public BaseResponse<AnnoVO> update(@Validated(value = UpdateGroup.class) @RequestBody AnnoBean bean) {
-        return BaseResponse.success();
+        return BaseResponse.success(sysAnnoService.updateAnno(bean));
     }
 
     @ApiOperation(value = "公告列表")
     @GetMapping("/list")
     public BaseResponse<PageResult<AnnoVO>> list(@RequestParam BaseQuery query) {
-        return BaseResponse.success();
+        return BaseResponse.success(sysAnnoService.list(query));
     }
 }
