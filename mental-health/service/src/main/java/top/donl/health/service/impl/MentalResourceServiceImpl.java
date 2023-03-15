@@ -10,14 +10,20 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 import top.donl.health.common.BizErrorEnum;
 import top.donl.health.configurer.properties.FileProperty;
+import top.donl.health.converter.MentalResourceConverter;
 import top.donl.health.mapper.MentalResourceMapper;
+import top.donl.health.model.bean.resource.MentalResourceBean;
 import top.donl.health.model.po.MentalResource;
+import top.donl.health.model.query.resource.MentalResourceQuery;
+import top.donl.health.model.vo.resource.MentalResourceVO;
 import top.donl.health.service.MentalResourceService;
+import top.donl.util.common.domain.page.PageResult;
 import top.donl.util.exceptioins.RestResponseExceptionEnum;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -27,6 +33,8 @@ import java.util.UUID;
 public class MentalResourceServiceImpl
         extends ServiceImpl<MentalResourceMapper, MentalResource>
         implements MentalResourceService {
+
+    private final MentalResourceConverter mentalResourceConverter;
 
     private final FileProperty fileProperty;
 
@@ -68,6 +76,31 @@ public class MentalResourceServiceImpl
             log.error("下载文件异常");
             BizErrorEnum.FILE_DOWNLOAD_FAIL.errorMsg();
         }
+    }
+
+    @Override
+    public MentalResourceVO add(MentalResourceBean bean) {
+        MentalResource po = mentalResourceConverter.bean2Po(bean);
+        baseMapper.insert(po);
+        return mentalResourceConverter.po2Vo(po);
+    }
+
+    @Override
+    public MentalResourceVO update(MentalResourceBean bean) {
+        MentalResource po = mentalResourceConverter.bean2Po(bean);
+        baseMapper.updateById(po);
+        return mentalResourceConverter.po2Vo(po);
+    }
+
+    @Override
+    public PageResult<MentalResourceVO> list(MentalResourceQuery query) {
+        long total = baseMapper.findTotalCountByQuery(query);
+        if (total == 0) {
+            return PageResult.toPageResult(null, query, total);
+        }
+
+        List<MentalResourceVO> list = baseMapper.findByList(query);
+        return PageResult.toPageResult(list, query, total);
     }
 
     private String getFileName(String fileName) {

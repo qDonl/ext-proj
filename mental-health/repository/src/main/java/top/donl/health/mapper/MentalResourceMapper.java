@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import top.donl.health.model.po.MentalResource;
+import top.donl.health.model.query.resource.MentalResourceQuery;
+import top.donl.health.model.vo.resource.MentalResourceVO;
 
 import java.util.List;
 
@@ -11,13 +13,8 @@ import java.util.List;
 
 @Repository
 public interface MentalResourceMapper extends BaseMapper<MentalResource> {
-    int updateBatch(List<MentalResource> list);
 
-    int updateBatchSelective(List<MentalResource> list);
+    long findTotalCountByQuery(@Param("query") MentalResourceQuery query);
 
-    int batchInsert(@Param("list") List<MentalResource> list);
-
-    int insertOrUpdate(MentalResource record);
-
-    int insertOrUpdateSelective(MentalResource record);
+    List<MentalResourceVO> findByList(@Param("query") MentalResourceQuery query);
 }
