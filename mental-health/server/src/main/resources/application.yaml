@@ -2,6 +2,10 @@ server:
   port: 8866
 
 spring:
+  servlet:
+    multipart:
+      max-file-size: 1GB
+      max-request-size: 1GB
   application:
     name: donl-parent-frame-parent
   main:
@@ -30,3 +34,8 @@ donl:
     swagger:
       enable: true
       api-select-package: top.donl.health.endpoint
+
+file:
+  config:
+    folder: mentalResource
+    domain: http://localhost:${server.port}

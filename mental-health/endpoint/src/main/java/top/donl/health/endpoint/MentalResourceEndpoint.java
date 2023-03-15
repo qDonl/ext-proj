@@ -15,6 +15,8 @@ import top.donl.health.service.MentalResourceService;
 import top.donl.util.common.domain.page.PageResult;
 import top.donl.util.response.BaseResponse;
 
+import javax.servlet.http.HttpServletResponse;
+
 
 @Api(tags = "资源管理")
 @RestController
@@ -26,13 +28,14 @@ public class MentalResourceEndpoint {
 
     @ApiOperation(value = "上传文件")
     @PostMapping("/upload")
-    public BaseResponse<String> upload(MultipartFile file) {
-        return BaseResponse.success();
+    public BaseResponse<String> upload(@RequestParam("file") MultipartFile file) {
+        return BaseResponse.success(mentalResourceService.uploadFile(file));
     }
 
     @GetMapping("/download")
     @ApiOperation(value = "下载附件")
-    public void download(String attachmentId) {
+    public void download(@RequestParam("attachmentId") String attachmentId, HttpServletResponse response) {
+        mentalResourceService.downloadFile(attachmentId, response);
     }
 
     @ApiOperation(value = "添加资源")
