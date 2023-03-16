@@ -4,8 +4,8 @@ Content-Type: application/json
 token: {{token}}
 
 {
-  "desc": "这是咨询详情",
-  "title": "这是咨询标题"
+  "desc": "这是咨询详情-7",
+  "title": "这是咨询标题-7"
 }
 
 ### 列表查询
