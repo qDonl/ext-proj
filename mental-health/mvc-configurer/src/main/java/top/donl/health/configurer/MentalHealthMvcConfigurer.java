@@ -29,11 +29,11 @@ public class MentalHealthMvcConfigurer extends WebMvcConfiguration {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-//        super.addInterceptors(registry);
-//
-//        registry.addInterceptor(authInterceptor())
-//            .addPathPatterns(
-//                "/user/**", "/sys-anno/**", "/evaluation/**", "/consult-reply/**",
-//                "/msg-board/**", "/mental-resource/**", "/case/**", "/consult/**");
+        super.addInterceptors(registry);
+
+        registry.addInterceptor(authInterceptor())
+            .addPathPatterns(
+                "/user", "/sys-anno/**", "/evaluation/**", "/consult-reply/**",
+                "/msg-board/**", "/mental-resource/**", "/case/**", "/consult/**");
     }
 }

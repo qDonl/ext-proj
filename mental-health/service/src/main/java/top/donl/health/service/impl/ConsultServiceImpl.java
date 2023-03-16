@@ -36,7 +36,7 @@ public class ConsultServiceImpl
     public ConsultVO update(ConsultBean bean) {
         Long userId = UserCtxHolder.getUserInfo().getUserId();
         Consult consult = baseMapper.selectById(bean.getId());
-        RestResponseExceptionEnum.NOT_FOUND_ELEMENT.assertIsFalse(consult != null, "未找到当前咨询信息");
+        RestResponseExceptionEnum.NOT_FOUND_ELEMENT.assertIsTrue(consult != null, "未找到当前咨询信息");
         RestResponseExceptionEnum.CUSTOM_ERROR.assertIsTrue(consult.getCreateBy().equals(userId), "不可修改别人创建的文章");
 
         Consult result = consultConverter.bean2Po(bean);

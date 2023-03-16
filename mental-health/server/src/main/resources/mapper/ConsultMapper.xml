@@ -296,7 +296,7 @@
   </sql>
 
   <select id="findByQuery" resultType="top.donl.health.model.vo.consult.ConsultVO">
-      select id, title, `desc`, `create_time`, `update_time`
+      select id, title, `desc`, `create_time`, `update_time`, `consultant`
       from consult
       <include refid="ConsultQueryWhereClause"/>
       order by create_time desc

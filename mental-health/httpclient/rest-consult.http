@@ -1,0 +1,25 @@
+### 新增咨询
+POST {{domain}}/consult/add
+Content-Type: application/json
+token: {{token}}
+
+{
+  "desc": "这是咨询详情",
+  "title": "这是咨询标题"
+}
+
+### 列表查询
+GET {{domain}}/consult/list?pageSize=10&pageNum=1
+token: {{token}}
+
+
+### 更新
+PUT {{domain}}/consult/update
+Content-Type: application/json
+token: {{token}}
+
+{
+  "desc": "这是咨询详情-修改后的内容",
+  "id": 1,
+  "title": "这是咨询标题-修改后的标题"
+}

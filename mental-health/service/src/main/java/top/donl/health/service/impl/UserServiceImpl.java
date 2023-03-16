@@ -18,6 +18,7 @@ import top.donl.health.service.UserService;
 import top.donl.util.common.domain.info.UserInfo;
 import top.donl.util.exceptioins.RestResponseExceptionEnum;
 import top.donl.util.holder.UserCtxHolder;
+import top.donl.util.json.JacksonUtil;
 import top.donl.util.md5.Md5Util;
 
 @Service
@@ -35,8 +36,7 @@ public class UserServiceImpl
 
         User po = userConverter.bean2Po(bean);
         baseMapper.insert(po);
-        UserVO userVO = userConverter.po2Vo(po);
-        String token = JwtUtils.generateToken(userVO);
+        String token = JwtUtils.generateToken(new UserInfo(po.getId(), po.getRealName()));
         RequestCtxHolderWrapper reqWrapper = new RequestCtxHolderWrapper(RequestCtxHolder.getRequest());
         reqWrapper.putHeader(ConstantPair.AUTH_HEADER, token);
         return token;
@@ -48,9 +48,8 @@ public class UserServiceImpl
         RestResponseExceptionEnum.LOGIN_FAILED.assertIsTrue(phoneUser != null);
 
         String md5Pwd = Md5Util.md5(bean.getPassword());
-        RestResponseExceptionEnum.LOGIN_FAILED.assertIsTrue(StringUtils.equals(md5Pwd, phoneUser.getPhone()));
-        UserVO userVO = userConverter.po2Vo(phoneUser);
-        String token = JwtUtils.generateToken(userVO);
+        RestResponseExceptionEnum.LOGIN_FAILED.assertIsTrue(StringUtils.equals(md5Pwd, phoneUser.getPassword()));
+        String token = JwtUtils.generateToken(new UserInfo(phoneUser.getId(), phoneUser.getRealName()));
         RequestCtxHolderWrapper reqWrapper = new RequestCtxHolderWrapper(RequestCtxHolder.getRequest());
         reqWrapper.putHeader(ConstantPair.AUTH_HEADER, token);
         return token;
