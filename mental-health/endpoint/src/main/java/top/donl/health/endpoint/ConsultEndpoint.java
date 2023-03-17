@@ -35,13 +35,13 @@ public class ConsultEndpoint {
         return BaseResponse.success(consultService.update(bean));
     }
 
-    @ApiOperation(value = "咨询列表")
+    @ApiOperation(value = "咨询列表", response = ConsultVO.class)
     @GetMapping(value = "/list")
     public BaseResponse<PageResult<ConsultVO>> list(ConsultQuery query) {
         return BaseResponse.success(consultService.list(query, Boolean.FALSE));
     }
 
-    @ApiOperation(value = "我的咨询列表")
+    @ApiOperation(value = "我的咨询列表", response = ConsultVO.class)
     @GetMapping(value = "/list-self")
     public BaseResponse<PageResult<ConsultVO>> selfList(ConsultQuery query) {
         return BaseResponse.success(consultService.list(query, Boolean.TRUE));
