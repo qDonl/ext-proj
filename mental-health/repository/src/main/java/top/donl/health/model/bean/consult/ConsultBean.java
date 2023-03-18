@@ -12,6 +12,7 @@ import top.donl.health.common.validation.UpdateGroup;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Getter
@@ -26,7 +27,7 @@ public class ConsultBean {
     private Long id;
 
     @NotBlank(message = "咨询标题不能为空", groups = {InsertGroup.class, UpdateGroup.class})
-    @Max(value = 100, message = "咨询标题最多100字符", groups = {InsertGroup.class, UpdateGroup.class})
+    @Size(min = 1, max = 100, message = "咨询标题不能为空且最多100字符", groups = {InsertGroup.class, UpdateGroup.class})
     @ApiModelProperty(value = "咨询", required = true)
     private String title;
 
