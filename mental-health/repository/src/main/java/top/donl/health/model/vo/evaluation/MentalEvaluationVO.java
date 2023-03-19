@@ -31,4 +31,7 @@ public class MentalEvaluationVO {
 
     @ApiModelProperty(value = "更新时间")
     private LocalDateTime updateTime;
+
+    @ApiModelProperty(value = "描述信息")
+    private String desc;
 }

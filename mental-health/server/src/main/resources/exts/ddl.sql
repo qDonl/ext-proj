@@ -142,3 +142,7 @@ create table `msg_board`
     comment '留言板';
 
 
+
+alter table mental_evaluation
+    add column `desc` varchar(500) not null default '' comment '描述信息';
+

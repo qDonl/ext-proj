@@ -34,4 +34,9 @@ public class MentalEvaluationBean {
     @NotBlank(message = "地址不能为空", groups = {InsertGroup.class, UpdateGroup.class})
     @ApiModelProperty(value = "推荐地址", required = true)
     private String url;
+
+    @Max(value = 500, message = "描述信息")
+    @NotBlank(message = "描述信息不能为空", groups = {InsertGroup.class, UpdateGroup.class})
+    @ApiModelProperty(value = "描述信息", required = true)
+    private String desc;
 }

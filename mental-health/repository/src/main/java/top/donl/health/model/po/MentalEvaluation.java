@@ -42,4 +42,7 @@ public class MentalEvaluation extends BaseEntity<MentalEvaluation> {
      */
     @TableField(value = "publisher")
     private String publisher;
+
+    @TableField(value = "`desc`")
+    private String desc;
 }
