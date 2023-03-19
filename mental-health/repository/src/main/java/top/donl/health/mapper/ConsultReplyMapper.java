@@ -13,17 +13,10 @@ import java.util.List;
 
 @Repository
 public interface ConsultReplyMapper extends BaseMapper<ConsultReply> {
-    int updateBatch(List<ConsultReply> list);
-
-    int updateBatchSelective(List<ConsultReply> list);
-
-    int batchInsert(@Param("list") List<ConsultReply> list);
-
-    int insertOrUpdate(ConsultReply record);
-
-    int insertOrUpdateSelective(ConsultReply record);
 
     long findCountByQuery(@Param("query") ConsultReplyQuery query);
 
     List<ConsultReplyVO> findByQuery(@Param("query") ConsultReplyQuery query);
+
+    List<ConsultReplyVO> findByConsultId(@Param("consultId") Long consultId);
 }

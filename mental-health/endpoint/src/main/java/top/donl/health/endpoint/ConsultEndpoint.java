@@ -9,6 +9,7 @@ import top.donl.health.common.validation.InsertGroup;
 import top.donl.health.common.validation.UpdateGroup;
 import top.donl.health.model.bean.consult.ConsultBean;
 import top.donl.health.model.query.consult.ConsultQuery;
+import top.donl.health.model.vo.consult.ConsultInfoVo;
 import top.donl.health.model.vo.consult.ConsultVO;
 import top.donl.health.service.ConsultService;
 import top.donl.util.common.domain.page.PageResult;
@@ -39,6 +40,12 @@ public class ConsultEndpoint {
     @GetMapping(value = "/list")
     public BaseResponse<PageResult<ConsultVO>> list(ConsultQuery query) {
         return BaseResponse.success(consultService.list(query, Boolean.FALSE));
+    }
+
+    @ApiOperation(value = "获取咨询详情")
+    @GetMapping("/detail/{consultId}")
+    public BaseResponse<ConsultInfoVo> getDetail(@PathVariable("consultId") Long consultId) {
+        return BaseResponse.success(consultService.detail(consultId));
     }
 
     @ApiOperation(value = "我的咨询列表", response = ConsultVO.class)

@@ -5,10 +5,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import top.donl.health.converter.ConsultConverter;
 import top.donl.health.mapper.ConsultMapper;
+import top.donl.health.mapper.ConsultReplyMapper;
 import top.donl.health.model.bean.consult.ConsultBean;
 import top.donl.health.model.po.Consult;
 import top.donl.health.model.query.consult.ConsultQuery;
+import top.donl.health.model.vo.consult.ConsultInfoVo;
 import top.donl.health.model.vo.consult.ConsultVO;
+import top.donl.health.model.vo.consultReply.ConsultReplyVO;
+import top.donl.health.service.ConsultReplyService;
 import top.donl.health.service.ConsultService;
 import top.donl.util.common.domain.page.PageResult;
 import top.donl.util.exceptioins.RestResponseExceptionEnum;
@@ -23,6 +27,8 @@ public class ConsultServiceImpl
         implements ConsultService{
 
     private final ConsultConverter consultConverter;
+
+    private final ConsultReplyMapper consultReplyMapper;
 
     @Override
     public ConsultVO add(ConsultBean bean) {
@@ -57,5 +63,13 @@ public class ConsultServiceImpl
 
         List<ConsultVO> list = baseMapper.findByQuery(query);
         return PageResult.toPageResult(list, query, count);
+    }
+
+    @Override
+    public ConsultInfoVo detail(Long consultId) {
+        Consult consult = baseMapper.selectById(consultId);
+        ConsultVO vo = consultConverter.po2Vo(consult);
+        List<ConsultReplyVO> replyList = consultReplyMapper.findByConsultId(consultId);
+        return new ConsultInfoVo(vo, replyList);
     }
 }
