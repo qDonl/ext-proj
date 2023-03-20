@@ -29,7 +29,7 @@
     <include refid="Base_Column_List" />
     from msg_board
     where is_deleted = 0
-    order by create_time desc
+    order by create_time desc, id desc
     limit #{query.pageSize}
     offset #{query.pageSkip}
   </select>

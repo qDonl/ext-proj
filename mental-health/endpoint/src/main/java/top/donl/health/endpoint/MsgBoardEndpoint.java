@@ -37,7 +37,7 @@ public class MsgBoardEndpoint {
 
     @ApiOperation(value = "公告列表")
     @GetMapping("/list")
-    public BaseResponse<PageResult<MsgBoardVO>> list(@RequestParam BaseQuery query) {
+    public BaseResponse<PageResult<MsgBoardVO>> list(BaseQuery query) {
         return BaseResponse.success(msgBoardService.listMsgBoard(query));
     }
 

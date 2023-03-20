@@ -40,6 +40,6 @@
     <include refid="Base_Column_List" />
     from consult_reply
     where is_deleted = 0 and consult_id = #{consultId}
-    order by create_time
+    order by create_time desc, id desc
     </select>
 </mapper>
