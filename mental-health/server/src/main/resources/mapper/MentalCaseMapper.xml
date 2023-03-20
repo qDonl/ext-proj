@@ -298,8 +298,8 @@
     <sql id="WhereClause">
         where is_deleted = 0
         <if test="query.keyword != null and query.keyword != ''">
-            and title like concat('%', #{query.keyword}, '#')
-               or content like concat('%', #{query.keyword}, '#')
+            and (title like concat('%', #{query.keyword}, '%')
+               or content like concat('%', #{query.keyword}, '%'))
         </if>
     </sql>
 

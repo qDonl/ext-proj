@@ -36,6 +36,7 @@
     <if test="query.keyword != null and query.keyword != ''">
       and title like concat('%', #{query.keyword}, '%')
     </if>
+    order by create_time desc
     limit #{query.pageSize,jdbcType=INTEGER}
     offset #{query.pageSkip}
   </select>
