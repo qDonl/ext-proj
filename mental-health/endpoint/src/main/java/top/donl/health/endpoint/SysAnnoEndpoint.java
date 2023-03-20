@@ -37,7 +37,7 @@ public class SysAnnoEndpoint {
 
     @ApiOperation(value = "公告列表")
     @GetMapping("/list")
-    public BaseResponse<PageResult<AnnoVO>> list(@RequestParam BaseQuery query) {
+    public BaseResponse<PageResult<AnnoVO>> list(BaseQuery query) {
         return BaseResponse.success(sysAnnoService.list(query));
     }
 }

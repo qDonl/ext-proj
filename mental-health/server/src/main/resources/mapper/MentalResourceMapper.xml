@@ -26,7 +26,10 @@
     select count(*)
     from mental_resource
     where is_deleted = 0
-    and title like concat('%', #{query.title}, '#')
+    <if test="query.title != null and query.title != ''">
+      and title like concat('%', #{query.title}, '%')
+    </if>
+
   </select>
 
   <select id="findByList" resultType="top.donl.health.model.vo.resource.MentalResourceVO">
@@ -34,7 +37,9 @@
     <include refid="Base_Column_List" />
     from mental_resource
     where is_deleted = 0
-    and title like concat('%', #{query.title}, '#')
+    <if test="query.title != null and query.title != ''">
+      and title like concat('%', #{query.title}, '%')
+    </if>
     order by create_time desc
     limit #{query.pageSize}
     offset #{query.pageSkip}

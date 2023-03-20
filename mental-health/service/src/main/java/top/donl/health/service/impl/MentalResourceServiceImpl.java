@@ -104,6 +104,10 @@ public class MentalResourceServiceImpl
     }
 
     private String getFileName(String fileName) {
+        if (fileName == null || !fileName.contains(".")) {
+            return UUID.randomUUID().toString();
+        }
+
         int index = fileName.lastIndexOf(".");
         fileName = fileName.substring(0, index) + "_" + UUID.randomUUID().toString() + fileName.substring(index);
         return fileName;

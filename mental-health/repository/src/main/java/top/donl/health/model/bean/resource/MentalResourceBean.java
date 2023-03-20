@@ -37,6 +37,7 @@ public class MentalResourceBean {
     @ApiModelProperty(value = "资源标题", required = true)
     private String title;
 
+    @Max(value = 512, message = "资源缩略图地址资源最长512", groups = {InsertGroup.class, UpdateGroup.class})
     @ApiModelProperty(value = "资源缩略图")
     private String thumbnail;
 

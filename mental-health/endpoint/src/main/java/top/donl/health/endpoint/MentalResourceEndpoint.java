@@ -41,18 +41,18 @@ public class MentalResourceEndpoint {
     @ApiOperation(value = "添加资源")
     @PostMapping("/add")
     public BaseResponse<MentalResourceVO> add(@Validated(value = {InsertGroup.class}) @RequestBody MentalResourceBean bean) {
-        return BaseResponse.success();
+        return BaseResponse.success(mentalResourceService.add(bean));
     }
 
     @ApiOperation(value = "更新资源")
     @PutMapping("/update")
-    public BaseResponse<MentalResourceVO> upodate(@Validated(value = {UpdateGroup.class}) @RequestBody MentalResourceBean bean) {
-        return BaseResponse.success();
+    public BaseResponse<MentalResourceVO> update(@Validated(value = {UpdateGroup.class}) @RequestBody MentalResourceBean bean) {
+        return BaseResponse.success(mentalResourceService.update(bean));
     }
 
     @ApiOperation(value = "资源列表")
     @GetMapping("/list")
-    public BaseResponse<PageResult<MentalResourceVO>> list(@RequestParam MentalResourceQuery query) {
-        return BaseResponse.success();
+    public BaseResponse<PageResult<MentalResourceVO>> list(MentalResourceQuery query) {
+        return BaseResponse.success(mentalResourceService.list(query));
     }
 }

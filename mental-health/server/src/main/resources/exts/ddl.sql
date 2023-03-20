@@ -146,3 +146,7 @@ create table `msg_board`
 alter table mental_evaluation
     add column `desc` varchar(500) not null default '' comment '描述信息';
 
+alter table mental_resource
+    modify column `thumbnail` varchar(512) not null default '' comment '缩略图地址';
+
+
