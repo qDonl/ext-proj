@@ -2,6 +2,7 @@ package top.donl.health.configurer;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import top.donl.bean.config.config.WebMvcConfiguration;
@@ -19,12 +20,11 @@ public class MentalHealthMvcConfigurer extends WebMvcConfiguration {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-            .allowedOriginPatterns("*")
-            .allowedMethods("POST","GET","PUT","DELETE")
-            .maxAge(1800)
-            .allowCredentials(true)
-            .allowedHeaders("*")
-            .exposedHeaders("token");
+                .allowedOriginPatterns("*")
+                .allowedHeaders(CorsConfiguration.ALL)
+                .allowedMethods(CorsConfiguration.ALL)
+                .allowCredentials(true)
+                .maxAge(3600);
     }
 
     @Override
@@ -32,8 +32,8 @@ public class MentalHealthMvcConfigurer extends WebMvcConfiguration {
         super.addInterceptors(registry);
 
         registry.addInterceptor(authInterceptor())
-            .addPathPatterns(
-                "/user", "/sys-anno/**", "/evaluation/**", "/consult-reply/**",
-                "/msg-board/**", "/mental-resource/**", "/case/**", "/consult/**");
+                .addPathPatterns(
+                        "/user", "/sys-anno/**", "/evaluation/**", "/consult-reply/**",
+                        "/msg-board/**", "/mental-resource/**", "/case/**", "/consult/**");
     }
 }
