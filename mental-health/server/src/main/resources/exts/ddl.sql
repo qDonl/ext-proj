@@ -141,6 +141,21 @@ create table `msg_board`
   charset = 'utf8mb4'
     comment '留言板';
 
+create table `evaluation_score`
+(
+    `id`               bigint         not null primary key auto_increment comment '主键',
+    `score`            decimal(10, 4) not null default 0 comment '评估得分',
+    `evaluation_id`    bigint         not null default 0 comment '评估ID',
+    `evaluation_title` varchar(64)    not null default '' comment '评估名称',
+    `create_time`      datetime       not null default current_timestamp comment '创建时间',
+    `create_by`        bigint         not null default 0 comment '创建人ID',
+    `update_time`      datetime       not null default current_timestamp on update current_timestamp comment '创建时间',
+    `update_by`        bigint         not null default 0 comment '更新人ID',
+    `is_deleted`       tinyint(1)     not null default 0 comment '是否被删除(0:未删除;1:已删除)'
+) engine = 'InnoDB'
+  charset = 'utf8mb4'
+    comment '评估得分记录';
+
 
 
 alter table mental_evaluation

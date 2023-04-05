@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.donl.health.mapper.EvaluationScoreMapper">
+  <resultMap id="BaseResultMap" type="top.donl.health.model.po.EvaluationScore">
+
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="score" jdbcType="DECIMAL" property="score" />
+    <result column="evaluation_id" jdbcType="BIGINT" property="evaluationId" />
+    <result column="evaluation_title" jdbcType="VARCHAR" property="evaluationTitle" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="is_deleted" jdbcType="BOOLEAN" property="deleted" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, score, evaluation_id, evaluation_title, create_time, create_by, update_time, 
+    update_by, is_deleted
+  </sql>
+
+  <select id="findSelf" resultType="top.donl.health.model.vo.score.ScoreVO">
+    select id, score, evaluation_title, evaluation_id, create_time
+    from evaluation_score
+    where create_by = #{userId} and create_time &gt;= DATE_SUB(CURRENT_DATE, INTERVAL 15 DAY)
+    order by create_time desc
+  </select>
+</mapper>
