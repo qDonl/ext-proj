@@ -10,6 +10,8 @@ import top.donl.health.model.vo.user.UserVO;
 import top.donl.health.service.UserService;
 import top.donl.util.response.BaseResponse;
 
+import java.util.List;
+
 @Api(tags = "用户模块")
 @RestController
 @RequestMapping(value = "/user")
@@ -35,5 +37,16 @@ public class UserEndpoint {
     @GetMapping
     public BaseResponse<UserVO> userInfo() {
         return BaseResponse.success(userService.detail());
+    }
+
+    @GetMapping("/list")
+    public BaseResponse<List<UserVO>> list() {
+        return BaseResponse.success(userService.userList());
+    }
+
+    @DeleteMapping("del/{userId}")
+    public BaseResponse<Void> deleteUser(@PathVariable("userId") Long userId) {
+        userService.deleteUser(userId);
+        return BaseResponse.success();
     }
 }

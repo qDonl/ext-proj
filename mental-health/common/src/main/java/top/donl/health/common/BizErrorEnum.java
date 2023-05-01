@@ -9,6 +9,12 @@ import top.donl.util.exceptioins.BaseAssert;
 public enum BizErrorEnum implements BaseAssert {
 
     /**
+     * 参数错误
+     */
+    BAD_REQUEST(1000_001, "参数错误"),
+
+
+    /**
      * 文件上传失败
      */
     FILE_UPLOAD_FAIL(8000_001, "文件上传失败"),

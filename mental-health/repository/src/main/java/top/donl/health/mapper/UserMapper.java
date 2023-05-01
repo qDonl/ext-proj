@@ -11,17 +11,12 @@ import java.util.List;
 
 @Repository
 public interface UserMapper extends BaseMapper<User> {
-    int updateBatch(List<User> list);
 
-    int updateBatchSelective(List<User> list);
-
-    int batchInsert(@Param("list") List<User> list);
-
-    int insertOrUpdate(User record);
-
-    int insertOrUpdateSelective(User record);
-
-    UserVO findById(@Param("userId") Long userId);
+    User findById(@Param("userId") Long userId);
 
     User findByPhone(@Param("phone") String phone);
+
+    List<User> userList();
+
+    int update2Delete(@Param("userId") Long userId);
 }

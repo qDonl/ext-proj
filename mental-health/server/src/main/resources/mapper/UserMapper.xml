@@ -312,7 +312,7 @@
     </trim>
   </insert>
 
-  <select id="findById" resultType="top.donl.health.model.vo.user.UserVO">
+  <select id="findById" resultType="top.donl.health.model.po.User">
     select id, real_name, role
     from user
     where id = #{userId}
@@ -323,4 +323,17 @@
     from `user`
     where phone = #{phone} and is_deleted = 0
     </select>
+
+  <select id="userList" resultType="top.donl.health.model.po.User">
+    select id, phone, role, real_name
+    from user
+    where is_deleted = 0
+    order by create_time desc
+  </select>
+
+  <update id="update2Delete">
+    update user
+    set is_deleted = 1
+    where id = #{userId}
+  </update>
 </mapper>

@@ -20,5 +20,5 @@ public interface ConstantPair {
 
     String CLAIM_KEY = "claimKey";
 
-    Integer EXPIRE = 10;
+    Integer EXPIRE = 1000;
 }

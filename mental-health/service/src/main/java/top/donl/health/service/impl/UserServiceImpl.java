@@ -6,7 +6,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import top.donl.bean.util.holder.RequestCtxHolder;
 import top.donl.bean.util.holder.RequestCtxHolderWrapper;
+import top.donl.health.common.BizErrorEnum;
 import top.donl.health.common.ConstantPair;
+import top.donl.health.common.RoleEnum;
 import top.donl.health.common.util.JwtUtils;
 import top.donl.health.converter.UserConverter;
 import top.donl.health.mapper.UserMapper;
@@ -20,6 +22,8 @@ import top.donl.util.exceptioins.RestResponseExceptionEnum;
 import top.donl.util.holder.UserCtxHolder;
 import top.donl.util.json.JacksonUtil;
 import top.donl.util.md5.Md5Util;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -59,6 +63,23 @@ public class UserServiceImpl
     public UserVO detail() {
         UserInfo userInfo = UserCtxHolder.getUserInfo();
         RestResponseExceptionEnum.NOT_FOUND_ELEMENT.assertIsTrue(userInfo != null, "该用户不存在");
-        return baseMapper.findById(userInfo.getUserId());
+        User user = baseMapper.findById(userInfo.getUserId());
+        return userConverter.po2Vo(user);
+    }
+
+    @Override
+    public List<UserVO> userList() {
+        List<User> userList = baseMapper.userList();
+        return userConverter.po2VoList(userList);
+    }
+
+    @Override
+    public void deleteUser(Long userId) {
+        UserInfo userInfo = UserCtxHolder.getUserInfo();
+        User user = baseMapper.selectById(userInfo.getUserId());
+        BizErrorEnum.BAD_REQUEST.assertIsTrue(RoleEnum.ADMIN.getCode().equals(user.getRole()), "管理员才可删除用户");
+        BizErrorEnum.BAD_REQUEST.assertIsFalse(userInfo.getUserId().equals(userId), "不可删除自己");
+
+        baseMapper.update2Delete(userId);
     }
 }

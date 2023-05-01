@@ -1,3 +1,4 @@
+# docker-compose -f docker-compose.build.yaml build
 version: "3.3"
 
 services:

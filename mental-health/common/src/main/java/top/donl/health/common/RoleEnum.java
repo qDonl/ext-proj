@@ -2,10 +2,12 @@ package top.donl.health.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 import top.donl.health.common.model.dto.BaseDictDTO;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -33,6 +35,15 @@ public enum RoleEnum {
      */
     ADMIN(2, "管理员"),
     ;
+
+    public static String getName(Integer code) {
+        Optional<RoleEnum> opt = Arrays.stream(values()).filter(v -> v.getCode().equals(code)).findFirst();
+        if (opt.isPresent()) {
+            return opt.get().getName();
+        }
+
+        return StringUtils.EMPTY;
+    }
 
     private final Integer code;
     private final String name;
