@@ -17,5 +17,7 @@ public class ScoreVO {
 
     private BigDecimal score;
 
+    private String realName;
+
     private LocalDateTime createTime;
 }

@@ -13,4 +13,6 @@ public interface EvaluationScoreService extends IService<EvaluationScore>{
     void add(EvaluationScoreBean bean);
 
     List<ScoreVO> findSelf();
+
+    List<ScoreVO> findByRealName(String realName);
 }

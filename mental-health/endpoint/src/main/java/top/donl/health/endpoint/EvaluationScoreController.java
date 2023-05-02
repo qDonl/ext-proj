@@ -30,4 +30,9 @@ public class EvaluationScoreController {
     public BaseResponse<List<ScoreVO>> findSelf() {
         return BaseResponse.success(evaluationScoreService.findSelf());
     }
+
+    @GetMapping("/find")
+    public BaseResponse<List<ScoreVO>> findByUserName(String realName) {
+        return BaseResponse.success(evaluationScoreService.findByRealName(realName));
+    }
 }

@@ -25,4 +25,13 @@
     where create_by = #{userId} and create_time &gt;= DATE_SUB(CURRENT_DATE, INTERVAL 15 DAY)
     order by create_time desc
   </select>
+
+  <select id="findByRealName" resultType="top.donl.health.model.vo.score.ScoreVO">
+    select u.real_name, es.id, es.score, es.create_time, es.evaluation_title, es.id
+    from user u
+    left join evaluation_score es on u.id = es.create_by
+    where es.create_time &gt;= DATE_SUB(CURRENT_DATE, INTERVAL 15 DAY)
+    and u.real_name like concat('%', #{realName}, '%')
+    order by es.create_time desc, u.id desc
+    </select>
 </mapper>

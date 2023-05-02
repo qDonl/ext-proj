@@ -13,4 +13,6 @@ import java.util.List;
 public interface EvaluationScoreMapper extends BaseMapper<EvaluationScore> {
 
     List<ScoreVO> findSelf(@Param("userId") Long userId);
+
+    List<ScoreVO> findByRealName(@Param("realName") String realName);
 }
