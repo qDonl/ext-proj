@@ -36,6 +36,7 @@ public class MentalHealthMvcConfigurer extends WebMvcConfiguration {
                         "/user", "/sys-anno/**", "/evaluation/**", "/consult-reply/**",
                         "/msg-board/**", "/mental-resource/**", "/case/**", "/consult/**",
                         "/evaluation-score/**"
-                );
+                )
+                .excludePathPatterns("/mental-resource/upload");
     }
 }
